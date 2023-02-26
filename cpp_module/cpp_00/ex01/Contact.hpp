@@ -2,6 +2,7 @@
 #define CONTACT_H
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 class Contact
 {
@@ -9,14 +10,14 @@ class Contact
 		std::string firstname;
 		std::string lastname;
 		std::string nickname;
-		std::string number;
+		std::string phoneNumber;
 		std::string secret;
 	public:
-		void setFirst(std::string first);
-		// void setLast(std::string last);
-		// void setNick(std::string nick);
-		// void setNumber(std::string number);
-		// void setSecret(std::string secret);
+		void setFirst(std::istream &first);
+		void setLast(std::istream &last);
+		void setNick(std::istream &nick);
+		void setNumber(std::istream &number);
+		void setSecret(std::istream &secret);
 		std::string getFirst();
 };
 

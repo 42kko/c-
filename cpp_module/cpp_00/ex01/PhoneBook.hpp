@@ -6,9 +6,15 @@ class PhoneBook
 {
 	private:
 		Contact book[8];
+		int lowest;
 	public:
+		PhoneBook()
+		{
+			lowest = 0;
+		}
 		void show();
-		void setBook(Contact contact);
+		void makeContact();
+		void firstname(std::string first);
 };
 
 #endif
