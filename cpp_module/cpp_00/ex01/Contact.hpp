@@ -12,7 +12,12 @@ class Contact
 		std::string number;
 		std::string secret;
 	public:
-		
+		void setFirst(std::string first);
+		// void setLast(std::string last);
+		// void setNick(std::string nick);
+		// void setNumber(std::string number);
+		// void setSecret(std::string secret);
+		std::string getFirst();
 };
 
 #endif
