@@ -2,11 +2,10 @@
 
 int	main()
 {
-	std::string str;
-	Contact contact;
-	std::cin >> str;
-	contact.setFirst(str);
 	PhoneBook book;
+	Contact contact;
+	std::string command;
+	std::cin >> command;
 	book.setBook(contact);
 	book.show();
 }
