@@ -14,7 +14,7 @@ class PhoneBook
 		}
 		void show();
 		void makeContact();
-		void firstname(std::string first);
+		void showDetail();
 };
 
 #endif

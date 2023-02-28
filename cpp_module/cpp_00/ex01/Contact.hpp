@@ -7,18 +7,22 @@
 class Contact
 {
 	private:
-		std::string firstname;
-		std::string lastname;
-		std::string nickname;
+		std::string firstName;
+		std::string lastName;
+		std::string nickName;
 		std::string phoneNumber;
 		std::string secret;
 	public:
-		void setFirst(std::istream &first);
-		void setLast(std::istream &last);
-		void setNick(std::istream &nick);
-		void setNumber(std::istream &number);
-		void setSecret(std::istream &secret);
+		void setFirst();
+		void setLast();
+		void setNick();
+		void setNumber();
+		void setSecret();
 		std::string getFirst();
+		std::string getLast();
+		std::string getNick();
+		std::string getNumber();
+		std::string getSecret();
 };
 
 #endif
