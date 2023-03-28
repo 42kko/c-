@@ -8,10 +8,7 @@ class PhoneBook
 		Contact book[8];
 		int lowest;
 	public:
-		PhoneBook()
-		{
-			lowest = 0;
-		}
+		PhoneBook();
 		void show();
 		void makeContact();
 		void showDetail();

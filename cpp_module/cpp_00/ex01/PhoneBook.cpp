@@ -1,5 +1,9 @@
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook()
+{
+	lowest = 0;
+}
 void PhoneBook::show()
 {
 	std::cout << "|" << std::setw(10) << "Index" <<\
