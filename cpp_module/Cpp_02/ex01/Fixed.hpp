@@ -19,3 +19,4 @@ class Fixed
 		int toInt() const;
 };
 
+std::ostream & operator<<(std::ostream& os, const Fixed& c);
