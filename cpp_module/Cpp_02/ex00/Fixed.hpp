@@ -1,5 +1,6 @@
+#ifndef FIXED_H
+#define FIXED_H
 #include <iostream>
-#include <ostream>
 
 class Fixed
 {
@@ -9,9 +10,10 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed& c);
-		~Fixed();
+		~Fixed();z
 		Fixed& operator=(const Fixed& c);
 		int getRawBits() const;
 		void setRawBits(int const raw);
 };
 
+#endif
