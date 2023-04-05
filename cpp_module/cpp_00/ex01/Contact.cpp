@@ -1,12 +1,23 @@
 #include "Contact.hpp"
 
+Contact::Contact()
+{
+	empty = true;
+}
+
 void Contact::setFirst()
 {
 	std::cout << "Please enter your first name: ";
 	std::string tmp;
 	if (!std::getline(std::cin, tmp))
 		exit (0);
-	this->firstName = tmp;
+	if (tmp.empty())
+	{
+		std::cout << "It's impossible to leave a blank" << std::endl;
+		Contact::setFirst();
+	}
+	else
+		this->firstName = tmp;
 }
 
 void Contact::setLast()
@@ -15,7 +26,13 @@ void Contact::setLast()
 	std::string tmp;
 	if (!std::getline(std::cin, tmp))
 		exit (0);
-	this->lastName = tmp;
+	if (tmp.empty())
+	{
+		std::cout << "It's impossible to leave a blank" << std::endl;
+		Contact::setLast();
+	}
+	else
+		this->lastName = tmp;
 }
 
 void Contact::setNick()
@@ -24,7 +41,13 @@ void Contact::setNick()
 	std::string tmp;
 	if (!std::getline(std::cin, tmp))
 		exit (0);
-	this->nickName = tmp;
+	if (tmp.empty())
+	{
+		std::cout << "It's impossible to leave a blank" << std::endl;
+		Contact::setNick();
+	}
+	else
+		this->nickName = tmp;
 }
 
 void Contact::setNumber()
@@ -33,7 +56,13 @@ void Contact::setNumber()
 	std::string tmp;
 	if (!std::getline(std::cin, tmp))
 		exit (0);
-	this->phoneNumber = tmp;
+	if (tmp.empty())
+	{
+		std::cout << "It's impossible to leave a blank" << std::endl;
+		Contact::setNumber();
+	}
+	else
+		this->phoneNumber = tmp;
 }
 
 void Contact::setSecret()
@@ -43,6 +72,7 @@ void Contact::setSecret()
 	if (!std::getline(std::cin, tmp))
 		exit (0);
 	this->secret = tmp;
+	empty = false;
 }
 
 std::string Contact::getFirst()
@@ -68,4 +98,9 @@ std::string Contact::getNumber()
 std::string Contact::getSecret()
 {
 	return (this->secret);
+}
+
+bool Contact::getEmpty()
+{
+	return (this->empty);
 }

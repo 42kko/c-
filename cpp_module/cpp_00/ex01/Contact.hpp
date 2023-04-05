@@ -12,7 +12,9 @@ class Contact
 		std::string nickName;
 		std::string phoneNumber;
 		std::string secret;
+		bool empty;
 	public:
+		Contact();
 		void setFirst();
 		void setLast();
 		void setNick();
@@ -23,6 +25,7 @@ class Contact
 		std::string getNick();
 		std::string getNumber();
 		std::string getSecret();
+		bool getEmpty();
 };
 
 #endif

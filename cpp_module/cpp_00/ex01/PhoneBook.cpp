@@ -59,31 +59,42 @@ void PhoneBook::showDetail()
 			std::cout << "Wrong index" << std::endl;
 		else if (std::stoi(tmp) >= 1 && std::stoi(tmp) <= 8)
 		{
-			std::cout << "first name: ";
-			std::cout << book[std::stoi(tmp) - 1].getFirst() << std::endl;
-			std::cout << "last name: ";
-			std::cout << book[std::stoi(tmp) - 1].getLast() << std::endl;
-			std::cout << "nick name: ";
-			std::cout << book[std::stoi(tmp) - 1].getNick() << std::endl;
-			std::cout << "phone number: ";
-			std::cout << book[std::stoi(tmp) - 1].getNumber() << std::endl;
-			std::cout << "darkest secret: ";
-			std::cout << book[std::stoi(tmp) - 1].getSecret() << std::endl;
-			return ;
+			if (!book[std::stoi(tmp) - 1].getEmpty())
+			{
+				std::cout << "first name: ";
+				std::cout << book[std::stoi(tmp) - 1].getFirst() << std::endl;
+				std::cout << "last name: ";
+				std::cout << book[std::stoi(tmp) - 1].getLast() << std::endl;
+				std::cout << "nick name: ";
+				std::cout << book[std::stoi(tmp) - 1].getNick() << std::endl;
+				std::cout << "phone number: ";
+				std::cout << book[std::stoi(tmp) - 1].getNumber() << std::endl;
+				std::cout << "darkest secret: ";
+				std::cout << book[std::stoi(tmp) - 1].getSecret() << std::endl;
+				return ;
+			}
+			else
+				std::cout << "index empty" << std::endl;
 		}
-	std::cout << "Enter the index you want to see, if you want to go back type in the 'b': ";
+		std::cout << "Enter the index you want to see, if you want to go back type in the 'b': ";
 	}
 	exit (0);
 }
 
 void PhoneBook::makeContact()
 {
-	Contact contact; 
-	contact.setFirst();
-	contact.setLast();
-	contact.setNick();
-	contact.setNumber();
-	contact.setSecret();
-	this->book[this->lowest % 8] = contact;
+	// Contact contact; 
+	// contact.setFirst();
+	// contact.setLast();
+	// contact.setNick();
+	// contact.setNumber();
+	// contact.setSecret();
+	// this->book[this->lowest % 8] = contact;
+	// this->lowest++;
+	book[lowest].setFirst();
+	book[lowest].setLast();
+	book[lowest].setNick();
+	book[lowest].setNumber();
+	book[lowest].setSecret();
 	this->lowest++;
 }
