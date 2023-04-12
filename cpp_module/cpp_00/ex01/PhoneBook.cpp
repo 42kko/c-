@@ -55,22 +55,22 @@ void PhoneBook::showDetail()
 			return ;
 		else if (tmp == "\0")
 			{}
-		else if (found != std::string::npos || !(std::stoi(tmp) >= 1 && std::stoi(tmp) <= 8))
+		else if (found != std::string::npos || !(std::atoi(tmp.c_str()) >= 1 && std::atoi(tmp.c_str()) <= 8))
 			std::cout << "Wrong index" << std::endl;
-		else if (std::stoi(tmp) >= 1 && std::stoi(tmp) <= 8)
+		else if (std::atoi(tmp.c_str()) >= 1 && std::atoi(tmp.c_str()) <= 8)
 		{
-			if (!book[std::stoi(tmp) - 1].getEmpty())
+			if (!book[std::atoi(tmp.c_str()) - 1].getEmpty())
 			{
 				std::cout << "first name: ";
-				std::cout << book[std::stoi(tmp) - 1].getFirst() << std::endl;
+				std::cout << book[std::atoi(tmp.c_str()) - 1].getFirst() << std::endl;
 				std::cout << "last name: ";
-				std::cout << book[std::stoi(tmp) - 1].getLast() << std::endl;
+				std::cout << book[std::atoi(tmp.c_str()) - 1].getLast() << std::endl;
 				std::cout << "nick name: ";
-				std::cout << book[std::stoi(tmp) - 1].getNick() << std::endl;
+				std::cout << book[std::atoi(tmp.c_str()) - 1].getNick() << std::endl;
 				std::cout << "phone number: ";
-				std::cout << book[std::stoi(tmp) - 1].getNumber() << std::endl;
+				std::cout << book[std::atoi(tmp.c_str()) - 1].getNumber() << std::endl;
 				std::cout << "darkest secret: ";
-				std::cout << book[std::stoi(tmp) - 1].getSecret() << std::endl;
+				std::cout << book[std::atoi(tmp.c_str()) - 1].getSecret() << std::endl;
 				return ;
 			}
 			else
@@ -83,18 +83,12 @@ void PhoneBook::showDetail()
 
 void PhoneBook::makeContact()
 {
-	// Contact contact; 
-	// contact.setFirst();
-	// contact.setLast();
-	// contact.setNick();
-	// contact.setNumber();
-	// contact.setSecret();
-	// this->book[this->lowest % 8] = contact;
-	// this->lowest++;
 	book[lowest].setFirst();
 	book[lowest].setLast();
 	book[lowest].setNick();
 	book[lowest].setNumber();
 	book[lowest].setSecret();
 	this->lowest++;
+	if (this->lowest == 8)
+		this->lowest = 0;
 }
