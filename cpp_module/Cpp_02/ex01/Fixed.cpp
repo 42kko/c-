@@ -21,7 +21,7 @@ Fixed::Fixed(float i)
 Fixed::Fixed(const Fixed& c)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = c;∑
+	*this = c;
 }
 
 Fixed::~Fixed()

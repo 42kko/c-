@@ -13,7 +13,7 @@ int main(int ac, char **av)
 	std::string s2(av[3]);
 	std::string newFile(av[1]);
 	newFile += ".replace";
-	std::ofstream ofs(newFile, std::ios::trunc);
+	std::ofstream ofs(newFile.c_str(), std::ios::trunc);
 	if (!ofs.is_open())
 	{
 		std::cout << "File creation failed" << std::endl;

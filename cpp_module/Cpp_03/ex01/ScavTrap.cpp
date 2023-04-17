@@ -38,7 +38,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& c)
 	this->hitPoints = c.hitPoints;
 	this->energyPoints = c.energyPoints;
 	this->attackDamage = c.attackDamage;
-	return(*this);
+	return (*this);
 }
 
 
