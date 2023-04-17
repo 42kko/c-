@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "ScavTrap constructors" << std::endl;
 	hitPoints = 100;
@@ -8,22 +8,17 @@ ScavTrap::ScavTrap()
 	attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const std::string name)
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap constructors" << std::endl;
-	this->name = name;
 	hitPoints = 100;
 	energyPoints = 50;
 	attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& c)
+ScavTrap::ScavTrap(const ScavTrap& c) : ClapTrap(c)
 {
 	std::cout << "ScavTrap copy constructors" << std::endl;
-	this->name = c.name;
-	this->hitPoints = c.hitPoints;
-	this->energyPoints = c.energyPoints;
-	this->attackDamage = c.attackDamage;
 }
 
 ScavTrap::~ScavTrap()

@@ -2,11 +2,11 @@
 #define SCAVTRAP_H
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 		ScavTrap();
-		ScavTrap(const std::string name);
+		ScavTrap(const std::string& name);
 		ScavTrap(const ScavTrap& c);
 		~ScavTrap();
 		ScavTrap& operator=(const ScavTrap& c);
