@@ -8,7 +8,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
+ScavTrap::ScavTrap(const std::string& newName) : ClapTrap(newName)
 {
 	std::cout << "ScavTrap constructors" << std::endl;
 	hitPoints = 100;
