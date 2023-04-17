@@ -56,7 +56,7 @@ void Contact::setNumber()
 	std::string tmp;
 	if (!std::getline(std::cin, tmp))
 		exit (0);
-	std::size_t found = tmp.find("0123456789");
+	std::size_t found = tmp.find_first_not_of("0123456789");
 	if (found != std::string::npos)
 		{
 			std::cout << "only number" << std::endl;
