@@ -28,11 +28,19 @@ int main(int ac, char **av)
 	std::string line;
 	while (std::getline(ifs, line))
 	{
+		std::string tmp;
 		size_t idx = 0;
-		while ((idx = line.find(s1, idx)) != std::string::npos)
+		while (idx < line.length())
 		{
-			line.replace(idx, s1.length(), s2);
-			idx += s2.length();
+			size_t pos = line.find(s1, idx);
+			if (pos == std::string::npos)
+			{
+				tmp += line.substr(idx);
+				break;
+			}
+			tmp += line.substr(idx, pos - idx);
+			tmp += s2;
+			idx = pos + s1.length();
 		}
 		ofs << line << std::endl;
 	}

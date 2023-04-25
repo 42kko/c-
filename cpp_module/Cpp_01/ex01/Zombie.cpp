@@ -8,11 +8,12 @@ Zombie::Zombie()
 Zombie::Zombie(std::string name)
 {
 	this->name = name;
+	std::cout << "revive :" << this->name << std::endl;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << this->name << " - die" << std::endl;
+	std::cout << "die :" << this->name << std::endl;
 }
 
 void Zombie::announce()

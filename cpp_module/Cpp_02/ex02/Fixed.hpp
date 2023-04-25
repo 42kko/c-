@@ -29,7 +29,6 @@ class Fixed
 		Fixed operator++(int x);
 		Fixed & operator--();
 		Fixed operator--(int x);
-		std::ostream& operator<<(const Fixed& c);
 		int getRawBits() const;
 		void setRawBits(int const raw);
 		float toFloat() const;
