@@ -42,6 +42,7 @@ int main(int ac, char **av)
 			tmp += s2;
 			idx = pos + s1.length();
 		}
+		line = tmp;
 		ofs << line << std::endl;
 	}
 	ifs.close();
