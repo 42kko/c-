@@ -3,11 +3,15 @@
 HumanB::HumanB(std::string name)
 {
 	this->name = name;
+	this->club = 0;
 }
 
 void HumanB::attack()
 {
-	std::cout << name << " attacks with their " << this->club->getType() << std::endl;
+	if (this->club == NULL)
+		std::cout << name << " attacks with their bare hands" << std::endl;
+	else
+		std::cout << name << " attacks with their " << this->club->getType() << std::endl;
 }
 
 void HumanB::setWeapon(Weapon &type)
