@@ -1,17 +1,19 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal(), ptr(new Brain())
+Cat::Cat() : Animal()
 {
+	this->ideas = new Brain();
 	std::cout << "Cat default constructor called" << std::endl;
 	this->_type = "Cat";
 }
 
-Cat::Cat(const std::string name) : Animal(name), ptr(new Brain())
+Cat::Cat(const std::string name) : Animal(name)
 {
+	this->ideas = new Brain();
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &c) : Animal(c), ptr(NULL)
+Cat::Cat(const Cat &c) : Animal(c)
 {
 	std::cout << "Cat copy called" << std::endl;
 	*this = c;
@@ -21,15 +23,14 @@ Cat& Cat::operator=(const Cat &c)
 {
 	std::cout << "Cat assignation called" << std::endl;
 	this->_type = c._type;
-	if (c.ptr)
-		ptr = new Brain(*c.ptr);
+	*(this->ideas) = *(c.ideas);
 	return (*this);
 }
 
 Cat::~Cat()
 {
 	std::cout << "Cat destructor called" << std::endl;
-	delete this->ptr;
+
 }
 
 std::string Cat::getType() const
