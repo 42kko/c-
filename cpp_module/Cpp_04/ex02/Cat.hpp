@@ -6,7 +6,7 @@
 class Cat : public Animal
 {
 	private:
-		Brain *ptr;
+		Brain *ideas;
 	public:
 		Cat();
 		Cat(const std::string name);

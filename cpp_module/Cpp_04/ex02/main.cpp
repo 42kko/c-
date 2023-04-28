@@ -5,10 +5,7 @@
 
 int main()
 {
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
-
-	delete j;
+	// Animal i;
+	Animal *i = new Cat;
 	i->makeSound();
-	delete i;
 }

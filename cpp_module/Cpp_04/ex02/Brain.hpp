@@ -6,7 +6,6 @@ class Brain
 {
 	private:
 		std::string _ideas[100];
-
 	public:
 		Brain();
 		Brain(const Brain &c);
