@@ -1,10 +1,20 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
-#include "main.cpp"
+#include <string>
+#include "IMateriaSource.hpp"
 
-class IMateriaSource
+class MateriaSource : public IMateriaSource
 {
-	
+	private:
+		AMateria *_inventory[4];
+	public:
+		MateriaSource();
+		MateriaSource(const MateriaSource &c);
+		MateriaSource& operator=(const MateriaSource &c);
+		virtual ~MateriaSource();
+		void learnMateria(AMateria *m);
+		AMateria* creatMateria(const std::string &type);
+		void unequip(const int &idx);
 };
 
 #endif

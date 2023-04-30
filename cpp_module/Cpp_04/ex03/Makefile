@@ -1,7 +1,7 @@
-NAME = Animal
+NAME = Magic
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
-SRCS = Animal.cpp Dog.cpp Cat.cpp main.cpp Brain.cpp
+SRCS = main.cpp AMateria.cpp Cure.cpp Ice.cpp Character.cpp MateriaSource.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all : $(NAME)
