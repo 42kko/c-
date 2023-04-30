@@ -1,14 +1,15 @@
 #ifndef AMATERIA_HPP
 #define AMATERIA_HPP
+
 #include <string>
 #include <iostream>
-#include "Character.hpp"
-#include "MateriaSource.hpp"
+#include "ICharacter.hpp"
+// #include "MateriaSource.hpp"
 
-class Character;
+// class Character;
 class ICharacter;
-class MateriaSource;
-class IMateriaSource;
+// class MateriaSource;
+// class IMateriaSource;
 
 class AMateria
 {

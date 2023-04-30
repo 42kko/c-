@@ -1,9 +1,9 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 #include "ICharacter.hpp"
-// #include "MateriaSource.hpp"
+#include "MateriaSource.hpp"
 
-class MateriaSource;
+// class MateriaSource;
 
 class Character : public ICharacter
 {
@@ -19,7 +19,7 @@ class Character : public ICharacter
 		const std::string& getName() const;
 		void equip(AMateria *m);
 		void unequip(int idx);
-		void usd(int idx, ICharacter &target);
+		void use(int idx, ICharacter &target);
 };
 
 #endif

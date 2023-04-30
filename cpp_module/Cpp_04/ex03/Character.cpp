@@ -38,3 +38,10 @@ void Character::unequip(int idx)
 {
 	_inventory->MateriaSource::unequip(idx);
 }
+
+void Character::use(int idx, ICharacter &target)
+{
+	std::cout << "hi\n";
+	(void)idx;
+	(void)target;
+}

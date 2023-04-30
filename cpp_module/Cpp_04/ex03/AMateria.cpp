@@ -31,7 +31,7 @@ const std::string& AMateria::getType() const
 	return (_type);
 }
 
-void usd(ICharacter &target)
+void AMateria::use(ICharacter &target)
 { 
 	std::cout << "* usd Materia " << target.getName() << " *" << std::endl;
 }
