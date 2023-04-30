@@ -4,12 +4,8 @@
 #include <string>
 #include <iostream>
 #include "ICharacter.hpp"
-// #include "MateriaSource.hpp"
 
-// class Character;
 class ICharacter;
-// class MateriaSource;
-// class IMateriaSource;
 
 class AMateria
 {

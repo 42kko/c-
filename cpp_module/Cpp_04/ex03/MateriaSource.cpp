@@ -51,7 +51,7 @@ void MateriaSource::learnMateria(AMateria *m)
 	_inventory[idx] = m;
 }
 
-AMateria* MateriaSource::creatMateria(const std::string &type)
+AMateria* MateriaSource::createMateria(const std::string &type)
 {
 	int idx = 0;
 	for (int i = 0; i < 4; i++)
@@ -59,7 +59,9 @@ AMateria* MateriaSource::creatMateria(const std::string &type)
 		if (!_inventory[idx])
 			return (0);
 		if (_inventory[idx]->getType() == type)
+		{
 			return (_inventory[idx]->clone());
+		}
 		idx++;
 	}
 	return (0);
@@ -74,4 +76,19 @@ void MateriaSource::unequip(const int &idx)
 	}
 	else
 		_inventory[idx] = 0;
+}
+
+void MateriaSource::use(int idx, ICharacter &target)
+{
+	if (idx > 3 || idx < 0)
+	{
+		std::cout << "Wrong idx" << std::endl;
+		return ;
+	}
+	if (!_inventory[idx])
+	{
+		std::cout << "empty idx" << std::endl;
+		return ;
+	}
+	_inventory[idx]->use(target);
 }

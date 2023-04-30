@@ -9,6 +9,7 @@ Character::Character()
 Character::Character(const std::string &name)
 {
 	_name = name;
+	std::cout << "character name: " << name << std::endl;
 	_inventory = new MateriaSource;
 }
 
@@ -39,9 +40,7 @@ void Character::unequip(int idx)
 	_inventory->MateriaSource::unequip(idx);
 }
 
-void Character::use(int idx, ICharacter &target)
+void Character::use(int idx, ICharacter &target) 
 {
-	std::cout << "hi\n";
-	(void)idx;
-	(void)target;
+	_inventory->use(idx, target);
 }
