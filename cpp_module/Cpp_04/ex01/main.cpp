@@ -12,9 +12,12 @@ int main()
 
 	Animal *animals[4] = { NULL };
 	for(int i=0; i<4; i++) {
-		if (i % 2) {
+		if (i % 2)
+		{
 			animals[i] = new Dog();
-		} else {
+		} 
+		else
+		{
 			animals[i] = new Cat();
 		}
 	}

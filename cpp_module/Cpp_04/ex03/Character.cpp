@@ -32,7 +32,7 @@ const std::string& Character::getName() const
 
 void Character::equip(AMateria *m)
 {
-	_inventory->learnMateria(m);
+	_inventory->equip(m);
 }
 
 void Character::unequip(int idx)

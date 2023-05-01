@@ -14,6 +14,7 @@ class MateriaSource : public IMateriaSource
 		virtual ~MateriaSource();
 		void learnMateria(AMateria *m);
 		AMateria* createMateria(const std::string &type);
+		void equip(AMateria *m);
 		void unequip(const int &idx);
 		void use(int idx, ICharacter &target);
 };
