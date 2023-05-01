@@ -6,7 +6,7 @@ Cat::Cat() : Animal()
 	this->_type = "Cat";
 }
 
-Cat::Cat(const std::string name) : Animal(name)
+Cat::Cat(const std::string &name) : Animal(name)
 {
 	std::cout << "Cat default constructor called" << std::endl;
 }

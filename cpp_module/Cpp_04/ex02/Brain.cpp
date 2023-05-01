@@ -11,11 +11,12 @@ Brain::Brain(const Brain &c)
 	*this = c;
 }
 
-Brain& Brain::operator=(const Brain &c)
+Brain &Brain::operator=(const Brain &c)
 {
 	std::cout << "Brain assignation called" << std::endl;
-	
-	for (int i=0; i<100; i++) {
+
+	for (int i = 0; i < 100; i++)
+	{
 		this->_ideas[i] = c._ideas[i];
 	}
 
@@ -24,5 +25,5 @@ Brain& Brain::operator=(const Brain &c)
 
 Brain::~Brain()
 {
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << "Brain destructor called" << std::endl;
 }

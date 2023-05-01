@@ -3,7 +3,7 @@
 MateriaSource::MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
-	 _inventory[i] = 0;
+		_inventory[i] = 0;
 }
 
 MateriaSource::MateriaSource(const MateriaSource &c)
@@ -11,7 +11,7 @@ MateriaSource::MateriaSource(const MateriaSource &c)
 	*this = c;
 }
 
-MateriaSource& MateriaSource::operator=(const MateriaSource &c)
+MateriaSource &MateriaSource::operator=(const MateriaSource &c)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -47,13 +47,13 @@ void MateriaSource::learnMateria(AMateria *m)
 	{
 		std::cout << "Source is full" << std::endl;
 		delete m;
-		return ;
+		return;
 	}
 	_inventory[idx] = m;
 	std::cout << "Source: " << _inventory[idx]->getType() << " learn" << std::endl;
 }
 
-AMateria* MateriaSource::createMateria(const std::string &type)
+AMateria *MateriaSource::createMateria(const std::string &type)
 {
 	int idx = 0;
 	for (int i = 0; i < 4; i++)
@@ -88,10 +88,11 @@ void MateriaSource::equip(AMateria *m)
 	if (idx > 3)
 	{
 		std::cout << "Inventory is full" << std::endl;
-		return ;
+		return;
 	}
 	_inventory[idx] = m;
-	std::cout << "equip: " << "[" << idx << "] " << _inventory[idx]->getType() << std::endl;
+	std::cout << "equip: "
+			  << "[" << idx << "] " << _inventory[idx]->getType() << std::endl;
 }
 
 void MateriaSource::unequip(const int &idx)
@@ -99,11 +100,12 @@ void MateriaSource::unequip(const int &idx)
 	if (!_inventory[idx])
 	{
 		std::cout << "can't be unequip: not equipped" << std::endl;
-		return ;
+		return;
 	}
 	else
 	{
-		std::cout << "unequip: " << "[" << idx << "] " << _inventory[idx]->getType() << std::endl;
+		std::cout << "unequip: "
+				  << "[" << idx << "] " << _inventory[idx]->getType() << std::endl;
 		_inventory[idx] = 0;
 	}
 }
@@ -113,13 +115,12 @@ void MateriaSource::use(int idx, ICharacter &target)
 	if (idx > 3 || idx < 0)
 	{
 		std::cout << "Wrong idx" << std::endl;
-		return ;
+		return;
 	}
 	if (!_inventory[idx])
 	{
 		std::cout << "empty idx" << std::endl;
-		return ;
+		return;
 	}
 	_inventory[idx]->use(target);
 }
-

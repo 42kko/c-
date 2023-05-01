@@ -16,7 +16,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal &c)
 	*this = c;
 }
 
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal &c)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &c)
 {
 	std::cout << "WrongAnimal assignation called" << std::endl;
 	this->_type = c._type;

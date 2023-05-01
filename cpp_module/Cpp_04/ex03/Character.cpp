@@ -13,7 +13,7 @@ Character::Character(const std::string &name)
 	_inventory = new MateriaSource;
 }
 
-Character& Character::operator=(const Character &c)
+Character &Character::operator=(const Character &c)
 {
 	_name = c._name;
 	_inventory = c._inventory;
@@ -25,7 +25,7 @@ Character::~Character()
 	delete _inventory;
 }
 
-const std::string& Character::getName() const
+const std::string &Character::getName() const
 {
 	return (_name);
 }
@@ -40,7 +40,7 @@ void Character::unequip(int idx)
 	_inventory->MateriaSource::unequip(idx);
 }
 
-void Character::use(int idx, ICharacter &target) 
+void Character::use(int idx, ICharacter &target)
 {
 	_inventory->use(idx, target);
 }

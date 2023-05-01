@@ -5,16 +5,17 @@
 
 class Dog : public Animal
 {
-	private:
-		Brain *ideas;
-	public:
-		Dog();
-		Dog(const std::string name);
-		Dog(const Dog &c);
-		Dog& operator=(const Dog &c);
-		~Dog();
-		std::string getType() const;
-		void makeSound() const;
+private:
+	Brain *ideas;
+
+public:
+	Dog();
+	Dog(const std::string &name);
+	Dog(const Dog &c);
+	Dog &operator=(const Dog &c);
+	~Dog();
+	std::string getType() const;
+	void makeSound() const;
 };
 
 #endif

@@ -15,7 +15,7 @@ AMateria::AMateria(const AMateria &c)
 	*this = c;
 }
 
-AMateria& AMateria::operator=(const AMateria &c)
+AMateria &AMateria::operator=(const AMateria &c)
 {
 	_type = c._type;
 	return (*this);
@@ -23,15 +23,14 @@ AMateria& AMateria::operator=(const AMateria &c)
 
 AMateria::~AMateria()
 {
-
 }
 
-const std::string& AMateria::getType() const
+const std::string &AMateria::getType() const
 {
 	return (_type);
 }
 
 void AMateria::use(ICharacter &target)
-{ 
+{
 	std::cout << "* usd Materia " << target.getName() << " *" << std::endl;
 }

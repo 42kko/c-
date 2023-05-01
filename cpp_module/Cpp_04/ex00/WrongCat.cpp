@@ -17,7 +17,7 @@ WrongCat::WrongCat(const WrongCat &c) : WrongAnimal(c)
 	*this = c;
 }
 
-WrongCat& WrongCat::operator=(const WrongCat &c)
+WrongCat &WrongCat::operator=(const WrongCat &c)
 {
 	std::cout << "WrongCat assignation called" << std::endl;
 	this->_type = c._type;
@@ -31,7 +31,7 @@ WrongCat::~WrongCat()
 
 std::string WrongCat::getType() const
 {
-	return(this->_type);
+	return (this->_type);
 }
 
 void WrongCat::makeSound() const

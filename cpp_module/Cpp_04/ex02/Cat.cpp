@@ -7,7 +7,7 @@ Cat::Cat() : Animal()
 	this->_type = "Cat";
 }
 
-Cat::Cat(const std::string name) : Animal(name)
+Cat::Cat(const std::string &name) : Animal(name)
 {
 	this->ideas = new Brain();
 	std::cout << "Cat default constructor called" << std::endl;
@@ -23,14 +23,16 @@ Cat& Cat::operator=(const Cat &c)
 {
 	std::cout << "Cat assignation called" << std::endl;
 	this->_type = c._type;
-	*(this->ideas) = *(c.ideas);
+	if (ideas)
+		delete ideas;
+	ideas = new Brain(*(c.ideas));
 	return (*this);
 }
 
 Cat::~Cat()
 {
 	std::cout << "Cat destructor called" << std::endl;
-
+	delete ideas;
 }
 
 std::string Cat::getType() const
