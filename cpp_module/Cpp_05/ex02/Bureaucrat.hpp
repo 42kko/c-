@@ -31,6 +31,7 @@ public:
         virtual const char* what() const throw();
     };
     void signForm(AForm &c) const;
+    void executeForm(AForm const & form);
 };
 
 std::ostream& operator<<(std::ostream &o,const Bureaucrat &c);

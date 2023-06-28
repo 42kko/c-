@@ -10,8 +10,8 @@ int main()
     {
         PresidentialPardonForm work("you");
         Bureaucrat kko("kko", 1);
-        work.beSigned(kko);
-        work.execute(kko);
+        kko.signForm(work);
+        kko.executeForm(work);
     }
     catch (std::exception &e)
     {
@@ -22,8 +22,8 @@ int main()
     {
         ShrubberyCreationForm work("you");
         Bureaucrat kko("kko", 1);
-        work.beSigned(kko);
-        work.execute(kko);
+        kko.signForm(work);
+        kko.executeForm(work);
     }
     catch (std::exception &e)
     {
@@ -34,8 +34,8 @@ int main()
     {
         RobotomyRequestForm work("you");
         Bureaucrat kko("kko", 1);
-        work.beSigned(kko);
-        work.execute(kko);
+        kko.signForm(work);
+        kko.executeForm(work);
     }
     catch (std::exception &e)
     {
