@@ -22,6 +22,8 @@ Intern& Intern::operator=(const Intern &c)
 
 AForm* Intern::makeForm(std::string form, std::string target)
 {
+    if (target.empty())
+        throw InvalidTarget();
     std::string arr[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     int i = 3;
     for (i = 0; i < 3; i++)
@@ -52,4 +54,9 @@ AForm* Intern::makeForm(std::string form, std::string target)
 const char* Intern::NotFoundForm::what() const throw()
 {
     return ("Form not found");
+}
+
+const char* Intern::InvalidTarget::what() const throw()
+{
+    return ("Invalid target");
 }

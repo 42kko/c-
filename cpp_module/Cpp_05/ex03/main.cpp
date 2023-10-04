@@ -12,6 +12,7 @@ int main()
         rrf = someone.makeForm("shrubbery creation", "kko");
         kko.signForm(*rrf);
         kko.executeForm(*rrf);
+        delete rrf;
     }
     catch (std::exception &e)
     {

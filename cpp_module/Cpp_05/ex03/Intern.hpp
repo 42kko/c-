@@ -18,7 +18,10 @@ class Intern
     {
         virtual const char* what() const throw();
     };
-
+    class InvalidTarget : public std::exception
+    {
+        virtual const char* what() const throw();
+    };
 };
 
 #endif
