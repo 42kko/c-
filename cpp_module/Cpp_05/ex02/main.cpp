@@ -8,6 +8,7 @@ int main()
 {
     try
     {
+        //sign 25, exec 5
         PresidentialPardonForm work("you");
         Bureaucrat kko("kko", 1);
         kko.signForm(work);
@@ -20,6 +21,7 @@ int main()
 
     try
     {
+        //sign 145, exec 137
         ShrubberyCreationForm work("you");
         Bureaucrat kko("kko", 1);
         kko.signForm(work);
@@ -32,6 +34,7 @@ int main()
 
     try
     {
+        //sign 72, exec 45
         RobotomyRequestForm work("you");
         Bureaucrat kko("kko", 1);
         kko.signForm(work);

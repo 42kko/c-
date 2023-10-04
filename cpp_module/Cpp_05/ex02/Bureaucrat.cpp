@@ -77,11 +77,11 @@ void Bureaucrat::signForm(AForm &c) const
     }
 }
 
-void Bureaucrat::executeForm(const AForm &c)
+void Bureaucrat::executeForm(const AForm &c) const
 {
     try
     {
-        c.execute(*this);
+        c.beExecute(*this);
         std::cout << _name << " executed " << c.getName() << std::endl;
     }
     catch (std::exception &e)

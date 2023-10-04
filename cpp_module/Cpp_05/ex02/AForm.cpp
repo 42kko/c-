@@ -41,6 +41,16 @@ const bool& AForm::getSign() const
     return (_sign);
 }
 
+const int& AForm::getSignGrade() const
+{
+    return (_signGrade);
+}
+
+const int& AForm::getExecuteGrade() const
+{
+    return (_executeGrade);
+}
+
 void AForm::beSigned(const Bureaucrat &c) throw (GradeTooLowException, AlreadySigned)
 {
     if (_sign)
@@ -48,6 +58,15 @@ void AForm::beSigned(const Bureaucrat &c) throw (GradeTooLowException, AlreadySi
     if (c.getGrade() > _signGrade) 
         throw GradeTooLowException();
     _sign = true;
+}
+
+void AForm::beExecute(const Bureaucrat &c) const throw (GradeTooLowException, NotSinged)
+{
+    if (!_sign)
+        throw NotSinged();
+    if (c.getGrade() > _executeGrade)
+        throw GradeTooLowException();
+    this->execute();
 }
 
 const char *AForm::GradeTooHighException::what() const throw()

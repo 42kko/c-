@@ -6,7 +6,7 @@ class Bureaucrat;
 
 class AForm
 {
-    protected:
+    private:
         const std::string _name;
         bool _sign;
         const int _signGrade;
@@ -20,7 +20,10 @@ class AForm
         virtual ~AForm();
         const std::string& getName() const;
         const bool& getSign() const;
+        const int& getSignGrade() const;
+        const int& getExecuteGrade() const;
         void beSigned(const Bureaucrat &c) throw(GradeTooLowException, AlreadySigned);
+        void beExecute(const Bureaucrat &c) const throw(GradeTooLowException, NotSinged);
         class GradeTooHighException : public std::exception
         {
             virtual const char* what() const throw();
@@ -37,7 +40,7 @@ class AForm
         {
             virtual const char* what() const throw();
         };
-        virtual void execute(Bureaucrat const &executor) const = 0;
+        virtual void execute() const = 0;
 };
 
 std::ostream& operator<<(std::ostream &o,const AForm &c);

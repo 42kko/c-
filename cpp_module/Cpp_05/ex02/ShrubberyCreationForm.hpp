@@ -12,7 +12,7 @@ public:
     ShrubberyCreationForm(const ShrubberyCreationForm &c);
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &c);
     ~ShrubberyCreationForm();
-    virtual void execute(Bureaucrat const &executor) const;
+    virtual void execute() const;
 };
 
 #endif

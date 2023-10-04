@@ -1,11 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm()
-    : AForm()
-{
-}
-
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm("ShrubberyCreationForm", 145, 137, target)
 {
@@ -28,16 +23,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+void ShrubberyCreationForm::execute() const
 {
-    if (this->_sign == false)
-        throw NotSinged();
-    else if (this->_executeGrade < executor.getGrade())
-        throw GradeTooLowException();
-	std::fstream	fs;
-
-	fs.open(_target + "_shrubbery", std::fstream::out | std::fstream::trunc);
-
+	std::fstream fs;
+	fs.open(this->getName() + "_shrubbery", std::fstream::out | std::fstream::trunc);
 	if (!fs.good())
 		std::cerr << "Error while opening Shrubbery target file" << std::endl;
 

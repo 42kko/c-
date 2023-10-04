@@ -5,7 +5,7 @@ int main()
 {
     try
     {
-        Bureaucrat aaa("aaa", -1);
+        Bureaucrat aaa("aaa", 0);
         std::cout << "here" << std::endl;
     }
     catch (std::exception &e)
@@ -30,6 +30,7 @@ int main()
         kko.incrementGrade();
         std::cout << kko << std::endl;
         kko.incrementGrade();
+        std::cout << "here" << std::endl;
     }
     catch (std::exception &e)
     {
@@ -43,6 +44,7 @@ int main()
         kko.decrementGrade();
         std::cout << kko << std::endl;
         kko.decrementGrade();
+        std::cout << "here" << std::endl;
     }
     catch (std::exception &e)
     {
