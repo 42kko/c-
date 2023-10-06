@@ -1,7 +1,7 @@
 NAME = a.out
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
-SRCS = main.cpp 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS = main.cpp classes.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all : $(NAME)

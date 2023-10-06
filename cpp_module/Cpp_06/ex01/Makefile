@@ -1,6 +1,6 @@
 NAME = a.out
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp Serialize.cpp
 OBJS = ${SRCS:.cpp=.o}
 

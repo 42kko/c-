@@ -17,7 +17,7 @@ class Serialize
 
     public:
     Serialize();
-    ~Serialize();
+    virtual ~Serialize();
     Serialize(const Serialize &c);
     Serialize& operator=(const Serialize &c);
     static uintptr_t serialize(Data *ptr);

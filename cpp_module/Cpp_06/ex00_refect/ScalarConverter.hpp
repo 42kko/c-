@@ -15,7 +15,7 @@ class ScalarConverter
         static void print(std::string s);
     public:
         ScalarConverter();
-        ~ScalarConverter();
+        virtual ~ScalarConverter();
         ScalarConverter(const ScalarConverter &c);
         ScalarConverter& operator=(const ScalarConverter &c);
         static void convert(std::string s);
