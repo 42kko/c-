@@ -38,15 +38,15 @@ void ScalarConverter::convert(std::string s)
         }
         if (s.find('.') != std::string::npos)
         {
-            if (s.find('.') == s.size() - 1 || s[s.find('.') + 1] == 'f' || s.find_first_of('.') == 0)
+            if (s.find('.') == s.size() - 1 || s[s.find('.') + 1] == 'f' || s.find_first_of('.') == 0 || s.rfind('.') != s.find('.'))
                 throw "Err: Invalid input";
             duo = true;
         }
-        if (s.find_first_not_of("0123456789.+-f") != std::string::npos)
+        if (s.find_first_not_of("0123456789.+-f") != std::string::npos || s.find("nan") != std::string::npos)
             pseudo = true;
-        if (s.find_first_not_of("-+") != std::string::npos || s.find("-+") == s.rfind("-+"))
+        if (s.find_first_not_of("-+") != std::string::npos || (s.find("-+") == s.rfind("-+") && s.find("-+") != std::string::npos))
         {
-            if (s.find_last_of("-+") != 0)
+            if (s.find_last_of("-+") != 0 && s.find_last_of("+-") != std::string::npos)
                 throw "Err: Invalid input";
         }
     }
