@@ -19,6 +19,8 @@ class Form
         virtual ~Form();
         const std::string& getName() const;
         const bool& getSign() const;
+        const int& getSignGrade() const;
+        const int& Form::getExecuteGrade() const;
         void beSigned(const Bureaucrat &c) throw(GradeTooLowException, AlreadySigned);
         class GradeTooHighException : public std::exception
         {

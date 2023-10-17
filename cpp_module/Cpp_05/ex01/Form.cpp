@@ -41,6 +41,17 @@ const bool& Form::getSign() const
     return (_sign);
 }
 
+const int& Form::getSignGrade() const
+{
+    return (_signGrade);
+}
+
+const int& Form::getExecuteGrade() const
+{
+    return (_executeGrade);
+}
+
+
 void Form::beSigned(const Bureaucrat &c) throw (GradeTooLowException, AlreadySigned)
 {
     if (_sign)
@@ -67,6 +78,6 @@ const char *Form::AlreadySigned::what() const throw()
 
 std::ostream& operator<<(std::ostream &o, const Form &c)
 {
-    o << c.getName() << ", form grade " << std::endl;
+    o << c.getName() << ", form sign grade " << c.getSignGrade() << " , execute grade " << c.getExecuteGrade() << std::endl;
     return (o);
 }
