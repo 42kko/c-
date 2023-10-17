@@ -2,10 +2,12 @@
 
 ScalarConverter::ScalarConverter()
 {
+
 }
 
 ScalarConverter::~ScalarConverter()
 {
+
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter &c)
@@ -22,87 +24,107 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &c)
     return (*this);
 }
 
-void ScalarConverter::convert(std::string str)
+void ScalarConverter::convert(std::string s)
 {
-    bool point = false;
-    bool flo = false;
-    for (int i = 0; str[i]; i++)
+    bool flo, duo, pseudo = false;
+
+    if (s.find_first_not_of("0123456789.f+-") == std::string::npos || s.compare("nan") == 0 || s.compare("nanf") == 0 || s.compare("+inf") == 0 || s.compare("-inf") == 0 || s.compare("-inff") == 0 || s.compare("+inff") == 0)
     {
-        if (str[i] == '.')
+        if (s.find('f') != std::string::npos)
         {
-            point = true;
-        }
-        if (str[i] == 'f' || point)
-        {
+            if (s.rfind('f') != s.size() - 1 || (s.find('f') != s.rfind('f') && s.find('f') != s.rfind('f') - 1))
+                throw "Err: Invalid input";
             flo = true;
-            break;
+        }
+        if (s.find('.') != std::string::npos)
+        {
+            if (s.find('.') == s.size() - 1 || s[s.find('.') + 1] == 'f' || s.find_first_of('.') == 0 || s.rfind('.') != s.find('.'))
+                throw "Err: Invalid input";
+            duo = true;
+        }
+        if (s.find_first_not_of("0123456789.+-f") != std::string::npos || s.find("nan") != std::string::npos)
+            pseudo = true;
+        if (s.find_first_not_of("-+") != std::string::npos || (s.find("-+") == s.rfind("-+") && s.find("-+") != std::string::npos))
+        {
+            if (s.find_last_of("-+") != 0 && s.find_last_of("+-") != std::string::npos)
+                throw "Err1: Invalid input";
         }
     }
-    char *endptr;
-    if (flo)
-        print(std::strtof(str.c_str(), &endptr));
-    else if (point || str.find("nan") != std::string::npos)
-        print(std::strtod(str.c_str(), &endptr));
     else
-        print(std::strtol(str.c_str(), &endptr, 10));
+        throw "Err: Invalid input";
+    if (pseudo)
+        print(s);
+    else if (flo)
+        print(std::strtof(s.c_str(), NULL));
+    else if (duo)
+        print(std::strtod(s.c_str(), NULL));
+    else if (!pseudo)
+        print(std::atoll(s.c_str()));
 }
 
-void ScalarConverter::print(long x)
+void ScalarConverter::print(long long i)
 {
-    std::stringstream ss;
-    std::string result;
-    if (x < 0 || x > 127)
-        result = "It's not ascii";
+    if (i < 1 || i > 150)
+        std::cout << "char: Non displayable" << std::endl;
     else
-    {
-        ss << static_cast<char>(x);
-        result = ss.str();
-    }
-    std::cout << "char: " << (x == 0 ? "Non displayable" : result) << std::endl;
-    if (((x == LONG_MAX || x == LONG_MIN) && errno == ERANGE) || (x < -2147483648 || x > 2147483647))
-    std::cout << "int: " << "impossible" << std::endl;
+        std::cout << "char: " << '\'' << static_cast<char>(i) << '\'' << std::endl;
+    if (i > 2147483647 || i < -2147483648)
+        std::cout << "int : Non displayable" << std::endl;
     else
-        std::cout << "int: " << x << std::endl;
-    std::cout << "float: " << static_cast<float>(x) << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(x) << std::endl;
+        std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(i) << 'f' << std::endl;
+    std::cout << "double: " << static_cast<double>(i) << std::endl;
 }
 
-void ScalarConverter::print(float x)
+void ScalarConverter::print(float f)
 {
-    std::stringstream ss;
-    std::string result;
-    if (x < 0 || x > 127)
-        result = "It's not ascii";
+    if (f < 1 || f > 150)
+        std::cout << "char: Non displayable" << std::endl;
     else
-    {
-        ss << static_cast<char>(x);
-        result = ss.str();
-    }
-    std::cout << "char: " << (x == 0 ? "Non displayable" : result) << std::endl;
-    if ((((x) == LONG_MAX || (x) == LONG_MIN) && errno == ERANGE) || (static_cast<int>(x) <= -2147483648 || static_cast<int>(x) > 2147483647))
-    std::cout << "int: " << "impossible" << std::endl;
-    else
-        std::cout << "int: " << static_cast<int>(x) << std::endl;
-    std::cout << "float: " << x << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(x) << std::endl;
+        std::cout << "char: " << '\'' << static_cast<char>(f) << '\'' << std::endl;
+    std::cout << "int: " << static_cast<int>(f) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << (f) << 'f' << std::endl;
+    std::cout << "double: " << static_cast<double>(f) << std::endl;
 }
 
-void ScalarConverter::print(double x)
+void ScalarConverter::print(double d)
 {
-    std::stringstream ss;
-    std::string result;
-    if (x < 0 || x > 127)
-        result = "It's not ascii";
+    if (d < 1 || d > 150)
+        std::cout << "char: Non displayable" << std::endl;
     else
+        std::cout << "char: " << '\'' << static_cast<char>(d) << '\'' << std::endl;
+    std::cout << "int: " << static_cast<int>(d) << std::endl;
+    std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(d) << 'f' << std::endl;
+    std::cout << "double: " << d << std::endl;
+}
+
+void ScalarConverter::print(std::string s)
+{
+    std::cout << "char: impossible" << std::endl;;
+    std::cout << "int: impossible" << std::endl;
+    std::string arr[3] = {"nan", "+", "-"};
+    int i = 3;
+    for (i = 0; i < 3; i++)
     {
-        ss << static_cast<char>(x);
-        result = ss.str();
+        if (s.find(arr[i]) != std::string::npos)
+            break;
+
     }
-    std::cout << "char: " << (x == 0 ? "Non displayable" : result) << std::endl;
-    if ((((x) == LONG_MAX || (x) == LONG_MIN) && errno == ERANGE) || (static_cast<int>(x) <= -2147483648 || static_cast<int>(x) > 2147483647))
-    std::cout << "int: " << "impossible" << std::endl;
-    else
-        std::cout << "int: " << static_cast<int>(x) << std::endl;
-    std::cout << "float: " << static_cast<float>(x) << "f" << std::endl;
-    std::cout << "double: " << x << std::endl;
+    switch (i)
+    {
+    case 0:
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+        break;
+    case 1:
+        std::cout << "float: +inff" << std::endl;
+        std::cout << "double: +inf" << std::endl;
+        break;
+    case 2:
+        std::cout << "float: -inff" << std::endl;
+        std::cout << "double: -inf" << std::endl;
+        break;
+    default:
+        break;
+    }
 }

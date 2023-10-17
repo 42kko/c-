@@ -9,6 +9,8 @@ int main()
 
     uintptr_t raw = Serialize::serialize(dptr);
     Data *ret = Serialize::deserialize(raw);
+    if (dptr == ret)
+        std::cout << "data pointer same" << std::endl;
     std::cout << ret->str << " | " << ret->c << " | " << ret->x << std::endl;
 
     delete dptr;

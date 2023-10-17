@@ -1,20 +1,21 @@
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 #include <iostream>
-#include <string>
-#include <sstream>
-#include <cstdlib>
-#include <climits>
+#include <string> 
+#include <cctype>
+#include <iomanip>
 
 class ScalarConverter
 {
     private:
-        static void print(long x);
-        static void print(float x);
-        static void print(double x);
+        static char _c;
+        static void print(long long i);
+        static void print(float f);
+        static void print(double d);
+        static void print(std::string s);
     public:
         ScalarConverter();
-        ~ScalarConverter();
+        virtual ~ScalarConverter();
         ScalarConverter(const ScalarConverter &c);
         ScalarConverter& operator=(const ScalarConverter &c);
         static void convert(std::string s);
