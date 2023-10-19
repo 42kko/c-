@@ -11,32 +11,16 @@
 template <typename T>
 class MutantStack : public std::stack<T, std::vector<T> >
 {
-    MutantStack();
-    // ~MutantStack();
-    // MutantStack(const MutantStack &c);
-    // MutantStack& operator=(const MutantStack &c);
-    // template <typename T>
-    std::vector<T>::iter& begin();
-    // template <typename T>
-    typename std::vector<T>::iter& end();
+    private:
+    public:
+        typedef typename std::vector<T>::iterator iterator;
+        MutantStack& operator=(const MutantStack &c);
+        MutantStack(const MutantStack &c);
+        MutantStack();
+        ~MutantStack();
+        iterator begin();
+        iterator end();
 };
-
-template <typename T>
-MutantStack<T>::MutantStack()
-{
-}
-
-template <typename T>
-typename std::vector<T>::iterator& begin()
-{
-    return c.begin();
-}
-
-template <typename T>
-typename std::vector<T>::iterator& end()
-{
-    return c.end();
-}
+#include "MutantStack.tpp"
 
 #endif
-
