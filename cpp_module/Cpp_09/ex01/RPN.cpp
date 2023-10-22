@@ -15,9 +15,9 @@ rpn::rpn(char *s)
         {
             if (_ms.size() < 2)
                 throw (std::string("Error1"));
-            int i = _ms.top();
+            ssize_t i = _ms.top();
             _ms.pop();
-            int j = _ms.top();
+            ssize_t j = _ms.top();
             _ms.pop();
             switch (*s)
             {
@@ -28,6 +28,8 @@ rpn::rpn(char *s)
                 _ms.push(j + i);
                 break;
             case 47:
+                if (i == 0)
+                    throw (std::string("Error1"));
                 _ms.push(j / i);
                 break;
             case 45:

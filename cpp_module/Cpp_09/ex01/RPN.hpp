@@ -9,12 +9,13 @@ class rpn
 {
     private:
         rpn();
-        std::stack<int> _ms;
+        rpn(const rpn &c);
+        rpn& operator=(const rpn &c);
+        std::stack<ssize_t> _ms;
     public:
         rpn(char *s);
         ~rpn();
-        rpn(const rpn &c);
-        rpn& operator=(const rpn &c);
 };
 
 #endif
+

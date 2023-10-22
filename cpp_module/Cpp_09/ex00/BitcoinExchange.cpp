@@ -173,7 +173,15 @@ void bitcoinExchange::exchange(const char *s)
             continue;
         }
         Mmap::iterator iter = _mmap.upper_bound(date);
-        iter--;
-        std::cout << date << " => " << value << " = " << iter->second * std::atof(value.c_str()) << std::endl;
+        if (iter == _mmap.begin())
+        {
+            std::cout << "err" << std::endl;
+        }
+        else
+        {
+            iter--;
+            std::cout << date << " => " << value << " = " << iter->second * std::atof(value.c_str()) << std::endl;
+        }
     }
+    fs.close();
 }
