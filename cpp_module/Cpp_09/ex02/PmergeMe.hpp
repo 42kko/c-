@@ -11,17 +11,20 @@ class PmergeMe
         typedef std::pair<unsigned long, unsigned long> pair;
         typedef std::vector<std::pair<unsigned long, unsigned long> > vec;
         PmergeMe();
+        std::vector<unsigned long> _sorted;
         vec _vec;
-        pair *_pair;
         unsigned long _solo;
         unsigned long _size;
+        void binaryInsertSort();
+        size_t getIndex(size_t i);
+        void binary(int idx);
     public:
         PmergeMe(const int &ac, char **av);
         // ~PmergeMe();
         // PmergeMe(const PmergeMe &c);
         // PmergeMe& operator=(const PmergeMe &c);
-        void mergeSort(pair *_p, size_t left, size_t right);
-        void merge(pair *_p, size_t left, size_t mid, size_t right);
+        void mergeSort(vec &p, size_t left, size_t right);
+        void merge(vec &arr, size_t left, size_t mid, size_t right);
 };
 
 #endif

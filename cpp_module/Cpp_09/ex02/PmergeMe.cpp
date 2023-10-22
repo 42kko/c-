@@ -22,7 +22,10 @@ PmergeMe::PmergeMe(const int &ac, char **av) : _size(ac - 1)
     if (_size % 2 == 0)
         _p = new unsigned long[_size];
     else
+    {
         _p = new unsigned long[_size - 1];
+        _size--;
+    }
     char *endP;
     unsigned long j = 0;
     for (unsigned long i = 0; i < _size; i++)
@@ -36,26 +39,36 @@ PmergeMe::PmergeMe(const int &ac, char **av) : _size(ac - 1)
     if (_size < static_cast<unsigned long>(ac - 1))
     {
         endP = 0;
-        _solo = strtol(av[ac], &endP, 10);
+        _solo = strtol(av[ac - 1], &endP, 10);
         if (*endP != 0)
             throw std::string("ERR1");
     }
-    _pair = new pair[_size / 2];
     for (size_t i = 1; i < _size; i = i + 2)
+        _p[i - 1] > _p[i] ? _vec.push_back(pair(_p[i - 1], _p[i])) : _vec.push_back(pair(_p[i], _p[i - 1]));
+
+    mergeSort(_vec, 0, _vec.size() - 1);
+    for (vec::iterator iter = _vec.begin(); iter != _vec.end(); iter++)
     {
-        _p[i - 1] > _p[i] ? _pair[i / 2] = pair(_p[i - 1], _p[i]) : _pair[i / 2] = pair(_p[i], _p[i - 1]);
+        std::cout << iter->first << ":" << iter->second << std::endl;
     }
-    mergeSort(_pair, 0, _size / 2 - 1);
-    delete [] _pair;
+    std::cout << "====" << std::endl;
+
+    for (size_t i = 0; i < _vec.size(); i++)
+        _sorted.push_back(_vec[i].first);
+
+    for (std::vector<unsigned long>::iterator iter = _sorted.begin(); iter != _sorted.end(); iter++)
+    {
+        std::cout << *iter << std::endl;
+    }
     delete [] _p;
 }
 
-void PmergeMe::merge(pair *arr, size_t left, size_t mid, size_t right)
+void PmergeMe::merge(vec &arr, size_t left, size_t mid, size_t right)
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
-    pair L[n1];
-    pair R[n2];
+    vec L(n1);
+    vec R(n2);
     for (int i = 0; i < n1; i++)
         L[i] = arr[left + i];
     for (int i = 0; i < n2; i++)
@@ -87,7 +100,7 @@ void PmergeMe::merge(pair *arr, size_t left, size_t mid, size_t right)
     }
 }
 
-void PmergeMe::mergeSort(pair *p, size_t left, size_t right)
+void PmergeMe::mergeSort(vec &p, size_t left, size_t right)
 {
     if (left < right)
     {
