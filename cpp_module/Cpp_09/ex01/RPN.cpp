@@ -52,15 +52,17 @@ rpn::rpn(char *s)
 
 rpn::~rpn()
 {
-
 }
 
 rpn::rpn(const rpn &c)
 {
-
+    *this = c;
 }
 
 rpn& rpn::operator=(const rpn &c)
 {
-
+    if (this == &c)
+        return *this;
+    _ms = c._ms;
+    return *this;
 }
