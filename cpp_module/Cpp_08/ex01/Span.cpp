@@ -23,6 +23,8 @@ Span& Span::operator=(const Span &c)
     if (this == &c)
         return *this;
     _vec = c._vec;
+    _max = c._max;
+    _sorted = c._sorted;
     return *this;
 }
 

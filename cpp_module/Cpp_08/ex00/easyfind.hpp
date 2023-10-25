@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <stack>
 
 template <typename T>
 typename T::iterator easyfind(T &t, const int &i)

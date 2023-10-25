@@ -21,7 +21,7 @@ template <typename T>
 {
     if (this == &c)
         return *this;
-    this.c = c.c;
+    this->c = c.c;
     return *this;
 }
 
