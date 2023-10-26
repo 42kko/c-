@@ -156,6 +156,10 @@ void bitcoinExchange::exchange(const char *s)
         }
         date = ft_trim(str.substr(0, str.find('|')));
         value = ft_trim(str.substr(str.find('|') + 1));
+        if (value.empty())
+        {
+            std::cout << "Error: bad input => " << str << std::endl; 
+        }
         str.erase(0, str.size());
         if (!dateValid(date))
         {

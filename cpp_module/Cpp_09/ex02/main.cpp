@@ -31,8 +31,8 @@ void print(int ac, char **av, PmergeMe &vec, PmergeMe &deq)
     }
     buffer << std::endl;
     std::cout << buffer.str();
-    std::cout << "Time to process a range of" << ac - 1 << "elements with std::vector : " << vec.getTimeV() << " us" << std::endl;
-    std::cout << "Time to process a range of" << ac - 1 << "elements with std::deque : " << deq.getTimeD() << " us" << std::endl;
+    std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << vec.getTimeV() << " us" << std::endl;
+    std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : " << deq.getTimeD() << " us" << std::endl;
 }
 
 int main(int ac, char **av)
