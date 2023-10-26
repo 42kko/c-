@@ -14,7 +14,7 @@ rpn::rpn(char *s)
         else if (*s == '*' || *s == '+' || *s == '/' || *s == '-')
         {
             if (_ms.size() < 2)
-                throw (std::string("Error1"));
+                throw (std::string("Error: invalid value"));
             ssize_t i = _ms.top();
             _ms.pop();
             ssize_t j = _ms.top();
@@ -29,7 +29,7 @@ rpn::rpn(char *s)
                 break;
             case 47:
                 if (i == 0)
-                    throw (std::string("Error1"));
+                    throw (std::string("Error: Divide by 0"));
                 _ms.push(j / i);
                 break;
             case 45:
@@ -43,7 +43,7 @@ rpn::rpn(char *s)
         {
         }
         else
-            throw (std::string("Error"));
+            throw (std::string("Error: invalid value"));
         (s)++;
     }
     if (_ms.size() == 1)

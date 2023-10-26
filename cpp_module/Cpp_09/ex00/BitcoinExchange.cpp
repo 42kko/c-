@@ -40,7 +40,7 @@ bitcoinExchange::bitcoinExchange(char *s)
     std::getline(fs, str);
     if (str != "date,exchange_rate")
     {
-        throw (std::string ("Error: Db first line is invalid, chack data.csv"));
+        throw (std::string ("Error: Db first line is invalid, check data.csv"));
     }
     str.erase(0, str.size());
     while (!fs.eof())
@@ -108,7 +108,7 @@ bool bitcoinExchange::valueValid(std::string value)
 {
     char *p = NULL;
 	double ret = std::strtod(value.c_str(), &p);
-	if (ret >= 0 && ret <= 10000 && *p == 0)
+	if (ret >= 0 && ret <= 1000 && *p == 0)
 		return true;
 	return false;
 }
@@ -179,7 +179,7 @@ void bitcoinExchange::exchange(const char *s)
         Mmap::iterator iter = _mmap.upper_bound(date);
         if (iter == _mmap.begin())
         {
-            std::cout << "err" << std::endl;
+            std::cout << "Error: No matching data=> " << date << std::endl;
         }
         else
         {
