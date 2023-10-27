@@ -13,9 +13,10 @@ class PmergeMe
 {
     private:
         PmergeMe();
+        int _ac;
+        std::vector<std::string> _av;
         unsigned long _size;
         unsigned long _solo;
-        bool type;
         typedef std::pair<unsigned long, unsigned long> pair;
         //for vector
         typedef std::vector<pair> vec;
@@ -41,15 +42,13 @@ class PmergeMe
         double _vecT;
         double _deqT;
     public:
-        PmergeMe(const int &ac, char **av, int x);
         PmergeMe(const int &ac, char **av);
         ~PmergeMe();
         PmergeMe(const PmergeMe &c);
         PmergeMe& operator=(const PmergeMe &c);
-        double getTimeV() const;
-        double getTimeD() const;
-        std::deque<unsigned long> getDeq() const;
-        std::vector<unsigned long> getVec() const;
+        void setVector();
+        void setDeque();
+        void print();
 };
 
 #endif

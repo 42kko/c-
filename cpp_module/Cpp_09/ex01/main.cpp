@@ -9,7 +9,8 @@ int main(int ac, char **av)
     }
     try
     {
-        rpn c(av[1]);
+        rpn c;
+        c.calculation(av[1]);
     }
     catch (std::string &e)
     {

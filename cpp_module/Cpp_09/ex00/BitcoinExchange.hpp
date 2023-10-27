@@ -22,6 +22,7 @@ class bitcoinExchange
         bitcoinExchange(const bitcoinExchange &c);
         bitcoinExchange& operator=(const bitcoinExchange &c);
         void exchange(const char *s);
+        void setup(const char *s);
 };
 
 #endif

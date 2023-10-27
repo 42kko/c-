@@ -1,8 +1,7 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe()
+PmergeMe::PmergeMe() : _size(0), _solo(0), _vecT(0), _deqT(0)
 {
-
 }
 
 PmergeMe::PmergeMe(const PmergeMe &c)
@@ -14,7 +13,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &c)
 {
     if (this == &c)
         return *this;
-    type = c.type;
     _size = c._size;
     _solo = c._solo;
     _vec = c._vec;
@@ -23,6 +21,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &c)
     _sortedDeq = c._sortedDeq;
     _vecT = c._vecT;
     _deqT = c._deqT;
+    _ac = c._ac;
+    _av = c._av;
     return *this;
 }
 
@@ -40,8 +40,9 @@ double getTime(struct timeval &begin, struct timeval &end)
     return diff;
 }
 
-PmergeMe::PmergeMe(const int &ac, char **av) : _size(ac - 1), _solo(0), type(true)
+void PmergeMe::setVector()
 {
+    _size = _ac - 1;
     unsigned long *_p;
     struct timeval begin, end;
     gettimeofday(&begin, NULL);
@@ -49,29 +50,29 @@ PmergeMe::PmergeMe(const int &ac, char **av) : _size(ac - 1), _solo(0), type(tru
         _p = new unsigned long[_size];
     else
     {
-        _p = new unsigned long[_size - 1];
         _size--;
+        _p = new unsigned long[_size];
     }
     char *endP;
     long j = 0;
     for (unsigned long i = 0; i < _size; i++)
     {
         endP = 0;
-        j = strtol(av[i + 1], &endP, 10);
+        j = strtol(_av[i].c_str(), &endP, 10);
         if (*endP != 0 || j < 0)
-            throw std::string("ERR1");
+            throw std::string("Error: bad input");
        _p[i] = static_cast<unsigned long>(j);
     }
-    if (_size < static_cast<unsigned long>(ac - 1))
+    if (_size < static_cast<unsigned long>(_ac - 1))
     {
         endP = 0;
-        j = strtol(av[ac - 1], &endP, 10);
+        j = strtol(_av[_ac - 2].c_str(), &endP, 10);
         if (*endP != 0 || j < 0)
-            throw std::string("ERR1");
+            throw std::string("Error: bad input");
         _solo = static_cast<unsigned long>(j);
     }
     //주사슬, 부사슬 생성한다.
-    for (size_t i = 1; i < _size; i = i + 2) 
+    for (size_t i = 1; i < _size; i = i + 2)
         _p[i - 1] > _p[i] ? _vec.push_back(pair(_p[i - 1], _p[i])) : _vec.push_back(pair(_p[i], _p[i - 1]));
 
     //주사슬의 mergeSort로 정렬한다.
@@ -240,9 +241,9 @@ void PmergeMe::mergeSort(vec &p, size_t left, size_t right)
 /*
 for deque
 */
-PmergeMe::PmergeMe(const int &ac, char **av, int x) : _size(ac - 1), _solo(0), type(false)
+void PmergeMe::setDeque()
 {
-    (void) x;
+    _size = _ac - 1;
     unsigned long *_p;
     struct timeval begin, end;
     gettimeofday(&begin, NULL);
@@ -258,22 +259,22 @@ PmergeMe::PmergeMe(const int &ac, char **av, int x) : _size(ac - 1), _solo(0), t
     for (unsigned long i = 0; i < _size; i++)
     {
         endP = 0;
-        j = strtol(av[i + 1], &endP, 10);
+        j = strtol(_av[i].c_str(), &endP, 10);
         if (*endP != 0 || j < 0)
-            throw std::string("ERR1");
+            throw std::string("Error: bad input");
        _p[i] = static_cast<unsigned long>(j);
     }
-    if (_size < static_cast<unsigned long>(ac - 1))
+    if (_size < static_cast<unsigned long>(_ac - 1))
     {
         endP = 0;
-        j = strtol(av[ac - 1], &endP, 10);
+        j = strtol(_av[_ac - 2].c_str(), &endP, 10);
         if (*endP != 0 || j < 0)
-            throw std::string("ERR1");
+            throw std::string("Error: bad input");
         _solo = static_cast<unsigned long>(j);
     }
     for (size_t i = 1; i < _size; i = i + 2) 
         _p[i - 1] > _p[i] ? _deq.push_back(pair(_p[i - 1], _p[i])) : _deq.push_back(pair(_p[i], _p[i - 1]));
-    mergeSortDeq(_deq, 0, _deq.size() - 1); 
+    mergeSortDeq(_deq, 0, _deq.size() - 1);
     for (size_t i = 0; i < _deq.size(); i++)
         _sortedDeq.push_back(_deq[i].first);
     binaryInsertSortDeq();
@@ -286,11 +287,11 @@ PmergeMe::PmergeMe(const int &ac, char **av, int x) : _size(ac - 1), _solo(0), t
 
 void PmergeMe::smallSortDeq()
 {
-    for (size_t i = 0; i < _vec.size(); i++)
+    for (size_t i = 0; i < _deq.size(); i++)
     {
         size_t left = 0;
         size_t right = _sortedDeq.size() - 1;
-        unsigned long key = _vec[i].second;
+        unsigned long key = _deq[i].second;
         while (left < right)
         {
             size_t mid = (left + right) / 2;
@@ -338,23 +339,23 @@ size_t PmergeMe::findInSortedDeq(unsigned long i)
 
 void PmergeMe::binaryInsertSortDeq()
 {
-    if (_vec.size() < 3)
+    if (_deq.size() < 3)
     {
         smallSortDeq();
         return;
     }
-    for (size_t i = 3; i <= _vec.size(); i ++)
+    for (size_t i = 3; i <= _deq.size(); i ++)
     {
         size_t j = getIndex(i);
         size_t minIdx = 0;
         i == 3 ? minIdx = 1 : minIdx = getIndex(i - 1) + 1;
         size_t maxIdx = 0;
-        j < _vec.size() ? maxIdx = j : maxIdx = _vec.size();
+        j < _deq.size() ? maxIdx = j : maxIdx = _deq.size();
         for (; maxIdx >= minIdx; maxIdx--)
         {
             size_t left = 0;
-            size_t right = findInSortedDeq(_vec[maxIdx - 1].first);
-            unsigned long key = _vec[maxIdx - 1].second;
+            size_t right = findInSortedDeq(_deq[maxIdx - 1].first);
+            unsigned long key = _deq[maxIdx - 1].second;
             while (left < right)
             {
                 size_t mid = (left + right) / 2;
@@ -365,7 +366,7 @@ void PmergeMe::binaryInsertSortDeq()
             }
             _sortedDeq.insert(_sortedDeq.begin() + left, key);
         }
-        if (j >= _vec.size())
+        if (j >= _deq.size())
             break;
     }
 }
@@ -418,32 +419,50 @@ void PmergeMe::mergeSortDeq(deq &p, size_t left, size_t right)
     }
 }
 
-
-double PmergeMe::getTimeV() const
+void PmergeMe::print()
 {
-    if (type)
-        return _vecT;
-    return 0;
+    if (!_vecT || !_deqT)
+    {
+        throw std::string("Error: be not set");
+    }
+    std::ostringstream buffer;
+    buffer << "Before: ";
+    for(std::vector<std::string>::iterator iter = _av.begin(); iter != _av.end(); iter++)
+    {
+        buffer << *iter << " ";
+        std::string str = buffer.str();
+        if (str.size() > 25)
+        {
+            buffer << "[...]";    
+            break;
+        }
+    }
+    buffer << std::endl;
+    buffer << "After:  ";
+    std::vector<unsigned long> v = _sorted;
+    for(std::vector<unsigned long>::iterator iter = v.begin(); iter != v.end(); iter++)
+    {
+        buffer << *iter << " ";
+        std::string str = buffer.str();
+        if (str.size() > 55)
+        {
+            buffer << "[...]";    
+            break;
+        }
+    }
+    buffer << std::endl;
+    std::cout << buffer.str();
+    std::cout << "Time to process a range of " << _ac - 1 << " elements with std::vector : " << _vecT << " us" << std::endl;
+    std::cout << "Time to process a range of " << _ac - 1 << " elements with std::deque : " << _deqT << " us" << std::endl;
 }
 
-double PmergeMe::getTimeD() const
+PmergeMe::PmergeMe(const int &ac, char **av) : _size(0), _solo(0), _vecT(0), _deqT(0)
 {
-    if (!type)
-        return _deqT;
-    return 0;
+    _ac = ac;
+    av++;
+    while(*av)
+    {
+        _av.push_back(*av);
+        av++;
+    }
 }
-
-std::deque<unsigned long> PmergeMe::getDeq() const
-{
-    if (!type)
-        return _sortedDeq;
-    throw(std::string("err"));
-}
-
-std::vector<unsigned long> PmergeMe::getVec() const
-{
-    if (type)
-        return _sorted;
-    throw(std::string("err"));
-}
-

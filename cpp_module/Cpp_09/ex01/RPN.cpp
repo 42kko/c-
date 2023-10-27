@@ -5,7 +5,7 @@ rpn::rpn()
 
 }
 
-rpn::rpn(char *s)
+void rpn::calculation(char *s)
 {
     while ((*s))
     {
@@ -48,6 +48,8 @@ rpn::rpn(char *s)
     }
     if (_ms.size() == 1)
         std::cout << _ms.top() << std::endl;
+    else
+        std::cout << "Error: check input" << std::endl;
 }
 
 rpn::~rpn()

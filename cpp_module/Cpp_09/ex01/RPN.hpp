@@ -8,13 +8,13 @@
 class rpn
 {
     private:
+        std::stack<ssize_t> _ms;
+    public:
         rpn();
         rpn(const rpn &c);
         rpn& operator=(const rpn &c);
-        std::stack<ssize_t> _ms;
-    public:
-        rpn(char *s);
         ~rpn();
+        void calculation(char *s);
 };
 
 #endif

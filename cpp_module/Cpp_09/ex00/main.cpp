@@ -10,6 +10,7 @@ int main(int ac, char **av)
 	try
 	{
 		bitcoinExchange bit(av[1]);
+		bit.setup(av[1]);
 		bit.exchange(av[1]);
 	}
 	catch(std::string &e)

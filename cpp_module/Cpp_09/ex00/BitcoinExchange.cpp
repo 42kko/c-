@@ -37,6 +37,23 @@ bitcoinExchange::bitcoinExchange(char *s)
         throw (std::string ("Error: input file cant open"));
     }
     input.close();
+    fs.close();
+}
+
+void bitcoinExchange::setup(const char *s)
+{
+    std::string str;
+    std::fstream fs("data.csv");
+    if (!fs.is_open())
+    {
+        throw (std::string ("Error: Db cant open"));
+    }
+    std::fstream input(s);
+    if (!input.is_open())
+    {
+        throw (std::string ("Error: input file cant open"));
+    }
+    input.close();
     std::getline(fs, str);
     if (str != "date,exchange_rate")
     {
